@@ -1,25 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect } from "react";
+import GifDisplay from "./components/GifDisplay";
+import Form from "./components/Form";
 
-function App() {
+export default function App() {
+  const API_KEY = "vHU2Wz2BdH864RgEdVQ1H6yeP87bb7uE";
+  // state to hold data
+  const [gif, setGif] = useState(null);
+  // function to getGifs
+  const getGif = async (searchTerm) => {
+    // make fetch request and store response
+    const response = await fetch(
+      `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${searchTerm}&limit=1&lang=en`
+    );
+    // parse JSON response into a javascript object
+    const data = await response.json();
+    // set the Movie state to the movie
+    setGif(data);
+  };
+
+  console.log(gif);
+
+   useEffect(() => {
+     getGif();
+   }, []);
+
+  // USE OUR COMPONENTS IN APPs RETURNED JSX
+  // we pass the getGif function as a prop
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Form getgif={getGif} />
+      <GifDisplay gif={gif} />
     </div>
   );
 }
 
-export default App;
