@@ -21,15 +21,16 @@ export default function App() {
 
   console.log(gif);
 
-   useEffect(() => {
-     getGif();
-   }, []);
+  //  useEffect(() => {
+  //    getGif();
+  //  }, []);
 
   // USE OUR COMPONENTS IN APPs RETURNED JSX
   // we pass the getGif function as a prop
   return (
     <div className="App">
-      <Form getgif={getGif} />
+      <Form getGif={getGif} />
+      <hr />
       <GifDisplay gif={gif} />
     </div>
   );
