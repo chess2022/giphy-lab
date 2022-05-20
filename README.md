@@ -1,3 +1,3 @@
 # Component Hierarchy
 
-! [Component Hierarchy](/src/screenshot.png)
+![Component Hierarchy](/src/screenshot.png)
